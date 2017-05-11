@@ -1,0 +1,15 @@
+<div class="ContainerCenter">  
+
+ <div class="panel panel-default">
+  
+  <div class="panel-heading"><h4>Utilisateurs</h4></div>
+
+   
+  <div class="list-group">
+    <button class="list-group-item"  *ngFor="let utilisateur of administrateurs" (click)="onModifier(utilisateur)">{{utilisateur.email}}</button>
+    <button class="list-group-item" *ngFor="let utilisateur of gestionnaires" (click)="onModifier(utilisateur)">{{utilisateur.email}}</button>
+    <button class="list-group-item" *ngFor="let utilisateur of utilisateurs" (click)="onModifier(utilisateur)">{{utilisateur.email}}</button>
+
+  </div>
+</div>
+

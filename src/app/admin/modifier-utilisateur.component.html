@@ -1,0 +1,33 @@
+<h1>Modifier</h1>
+    <form (ngSubmit)= "onModifier()" #registerForm="ngForm">
+      <div class="form-group">
+        <label for="email">email</label>
+        <input type="text" class="form-control" id="email" required 
+              [(ngModel)]="model.email" name="email" #email="ngModel">
+        <div [hidden]="email.valid || email.pristine"
+             class="alert alert-danger">
+          eMail requis
+        </div>
+      </div>
+      
+      <div class="form-group">
+        <label for="role">Role</label>
+        <select class="form-control" id="role" required [(ngModel)]="model.role" name="role" #role="ngModel">
+          <option *ngFor="let role of roles" [value]="role">{{role}}</option>
+        </select>
+        <div [hidden]="role.valid || role.pristine"
+             class="alert alert-danger">
+          Un role est requis 
+        </div>
+      </div>
+  
+     <div class="form-group" [hidden]="model.role!='utilisateur'">
+          <label for="gestionnaire">Gestionnaire</label>
+          <select class="form-control" id="gestionnaire" 
+            [(ngModel)]="model.gestionnaire" name="gestionnaire">
+            <option *ngFor="let utilisateur of gestionnaires" >{{utilisateur.email}}</option>
+          </select>
+      </div>
+      <button type="submit" class="btn btn-success" [disabled]="!registerForm.form.valid">Enregistrer</button>
+      <button class="btn btn-danger" (click)="onSupprimer()">Supprimer</button>
+    </form>
