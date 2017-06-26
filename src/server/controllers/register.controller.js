@@ -10,19 +10,19 @@ var sendJSONresponse = function(res, status, content) {
 module.exports.create = function(req, res) {
 
 
-  var newUSer = new USer();
+  var newUser = new User();
 
-  newUSer.email = req.body.email;
-  newUSer.role = req.body.role;
-  newUSer.setPassword(req.body.password);
+  newUser.email = req.body.email;
+  newUser.role = req.body.role;
+  newUser.setPassword(req.body.password);
 
 
-  newUSer.save(function(err) {
+  newUser.save(function(err) {
     var token;
     if (err) {
       return res.json({success: false, message: 'Utilisateur deja existant' })
     } 
-    token = newUSer.generateJwt();
+    token = newUser.generateJwt();
     res.status(200);
     res.json({
       "message" : "Utilisateur créé avec succès",
