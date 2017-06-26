@@ -9,11 +9,11 @@ import { AuthenticationService} from '../services/authentication.service';
 
 
 @Component({
-	templateUrl:'utilisateur.component.html'
+	templateUrl:'user.component.html'
 })
 
 
-export class  UtilisateurComponent{
+export class  UserComponent{
 
 	constructor(
 		private router : Router,

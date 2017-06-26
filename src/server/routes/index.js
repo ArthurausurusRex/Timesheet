@@ -23,11 +23,11 @@ router.get('/users', classicControler.listUsers);
 
 //userId
 
-router.get('/users/:utilisateurId',classicControler.getUser);
-router.put('/users/:utilisateurId',classicControler.updateUser);
-router.delete('/users/:utilisateurId',classicControler.deleteUser);
+router.get('/users/:userId',classicControler.getUser);
+router.put('/users/:userId',classicControler.updateUser);
+router.delete('/users/:userId',classicControler.deleteUser);
 
-// users/:UtilisateurRole
+// users/:UserRole
 
 router.get('/users/role/:role', classicControler.listUsersByRole)
 

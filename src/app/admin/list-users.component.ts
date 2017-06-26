@@ -1,7 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
 import { UserService} from '../services/user.service';
-import { Utilisateur } from '../utilisateur';
+import { User } from '../user';
 import { Subscription }from 'rxjs/Subscription'
 
 import {AlertService} from '../services/alert.service';
@@ -14,10 +14,10 @@ import {AlertService} from '../services/alert.service';
 
 export class ListUsersComponent implements OnInit {
 
-	gestionnaires: Utilisateur[];
-	administrateurs: Utilisateur[];
-	utilisateurs: Utilisateur[];
-	utilisateurSelct : Utilisateur;
+	managers: User[];
+	admins: User[];
+	users: User[];
+	userSelct : User;
 	subscription : Subscription;
 
 	constructor(
@@ -29,23 +29,23 @@ export class ListUsersComponent implements OnInit {
 
 	ngOnInit(){
 		this.getAdmins();
-		this.getGestionnaires();
-		this.getUtilisateurs();
+		this.getManagers();
+		this.getUsers();
 	}	
 
 
 
-	getGestionnaires(){
-		this.userService.getGestionnaires()
+	getManagers(){
+		this.userService.getManagers()
     					.subscribe(
-    				data=> this.gestionnaires =  data,
+    				data=> this.managers =  data,
     				error => console.log(error));
 	}
 
-	getUtilisateurs(){
-		this.userService.getUtilisateurs()
+	getUsers(){
+		this.userService.getUsers()
     					.subscribe(
-    				data=> {this.utilisateurs =  data
+    				data=> {this.users =  data
     						},
     				error => console.log(error));
 
@@ -54,13 +54,13 @@ export class ListUsersComponent implements OnInit {
 	getAdmins(){
 		this.userService.getAdmins()
     					.subscribe(
-    				data=> this.administrateurs =  data,
+    				data=> this.admins =  data,
     				error => console.log(error));
 	}
 
-	onModifier(utilisateur : Utilisateur): void {
-		this.utilisateurSelct = utilisateur;
-		this.router.navigate(['/admin/modifier', this.utilisateurSelct._id]);	
+	onModify(user : User): void {
+		this.userSelct = user;
+		this.router.navigate(['/admin/modifier', this.userSelct._id]);	
 	}
 
 		

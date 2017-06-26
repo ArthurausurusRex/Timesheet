@@ -7,7 +7,7 @@ import {AdminHomeComponent} from './admin-home.component';
 import {RegisterFormComponent} from './register-form.component';
 import {ListUsersComponent} from './list-users.component';
 import {AdminRoutingModule} from './admin-routing.module'
-import {ModifierUtilisateurComponent} from './modifier-utilisateur.component';
+import {ModifyUserComponent} from './modify-user.component';
 import {AdminAlertComponent} from './admin-alert.component';
 
 @NgModule({
@@ -22,7 +22,7 @@ import {AdminAlertComponent} from './admin-alert.component';
 		AdminHomeComponent,
 		RegisterFormComponent,
 		ListUsersComponent,
-		ModifierUtilisateurComponent,
+		ModifyUserComponent,
 		AdminAlertComponent
 	],
 

@@ -5,7 +5,7 @@ import { AdminComponent } from './admin.component';
 import { AdminHomeComponent } from './admin-home.component';
 import { RegisterFormComponent } from './register-form.component';
 import { AuthGuard } from '../services/auth-guard-admin.service';
-import { ModifierUtilisateurComponent } from './modifier-utilisateur.component'
+import { ModifyUserComponent } from './modify-user.component'
 
 
 const adminRoutes: Routes = [
@@ -19,12 +19,12 @@ const adminRoutes: Routes = [
 				canActivateChild: [AuthGuard],
 				children: [
 					{
-						path: 'ajout',
+						path: 'add',
 						component: RegisterFormComponent,
 					},
 					{
-						path: 'modifier/:_id',
-						component: ModifierUtilisateurComponent,
+						path: 'modify/:_id',
+						component: ModifyUserComponent,
 					}
 				]
 			}

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { UserService} from '../services/user.service';
-import { Utilisateur } from '../utilisateur';
+import { User } from '../user';
 import { AlertService } from '../services/alert.service';
 
 
@@ -14,11 +14,11 @@ import { AlertService } from '../services/alert.service';
 
 export class RegisterFormComponent implements OnInit {
 
-	roles = ['','gestionnaire', 'utilisateur', 'admin'];
-	model = new Utilisateur('', 'azertyuiop', this.roles[0], '');
+	roles = ['','manager', 'user', 'admin'];
+	model = new User('', 'azertyuiop', this.roles[0], '');
 	submitted = false;
 	
-	gestionnaires: Utilisateur[];
+	managers: User[];
 
 
 	constructor(
@@ -41,17 +41,17 @@ export class RegisterFormComponent implements OnInit {
         this.router.navigate(['/admin'])
         };
 
-    getGestionnaires(){
-    	this.userService.getGestionnaires()
+    getManagers(){
+    	this.userService.getManagers()
     					.subscribe(
-    				data=> this.gestionnaires =  data,
+    				data=> this.managers =  data,
     				error => console.log(error));
     					
 
    }
 
     ngOnInit(){
-    	this.getGestionnaires();
+    	this.getManagers();
     }
 
 }

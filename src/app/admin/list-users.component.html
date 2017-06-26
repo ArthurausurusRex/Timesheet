@@ -6,9 +6,9 @@
 
    
   <div class="list-group">
-    <button class="list-group-item"  *ngFor="let utilisateur of administrateurs" (click)="onModifier(utilisateur)">{{utilisateur.email}}</button>
-    <button class="list-group-item" *ngFor="let utilisateur of gestionnaires" (click)="onModifier(utilisateur)">{{utilisateur.email}}</button>
-    <button class="list-group-item" *ngFor="let utilisateur of utilisateurs" (click)="onModifier(utilisateur)">{{utilisateur.email}}</button>
+    <button class="list-group-item"  *ngFor="let user of admins" (click)="onModify(user)">{{user.email}}</button>
+    <button class="list-group-item" *ngFor="let user of managers" (click)="onModify(user)">{{user.email}}</button>
+    <button class="list-group-item" *ngFor="let user of users" (click)="onModify(user)">{{user.email}}</button>
 
   </div>
 </div>

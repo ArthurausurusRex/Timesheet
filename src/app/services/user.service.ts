@@ -5,7 +5,7 @@ import 'rxjs/add/operator/toPromise';
 
 import 'rxjs/add/operator/map';
 
-import { Utilisateur } from '../utilisateur';
+import { User } from '../user';
 
 
 @Injectable()
@@ -15,8 +15,8 @@ export class UserService {
     constructor(private http: Http) { }
 
 
-    create(utilisateur: Utilisateur) {
-     	return this.http.post('http://localhost:8080/api/users', utilisateur)
+    create(user: User) {
+     	return this.http.post('http://localhost:8080/api/users', user)
      		.map((response: Response) => 
                {
                 let token = response.json().token;
@@ -32,7 +32,7 @@ export class UserService {
                     .map(res =>res.json());
     }
 
-    getGestionnaires(): Observable<any>{
+    getManagers(): Observable<any>{
     	return this.http.get('http://localhost:8080/api/users/role/gestionnaire')
     				.map(res =>res.json());
     }
@@ -42,8 +42,8 @@ export class UserService {
                     .map(res =>res.json());
     }
 
-    getUtilisateurs(): Observable<any>{
-        return this.http.get('http://localhost:8080/api/users/role/utilisateur')
+    getUsers(): Observable<any>{
+        return this.http.get('http://localhost:8080/api/users/role/user')
                     .map(res =>res.json());
     }
 
@@ -57,9 +57,9 @@ export class UserService {
         return this.http.delete(url).map(res => res.json());
     }
 
-    updateOne(utilisateur: Utilisateur): Observable<any> {
-        const url = `http://localhost:8080/api/users/${utilisateur._id}`;
-        return this.http.put(url, utilisateur).map(res => res.json());
+    updateOne(user: User): Observable<any> {
+        const url = `http://localhost:8080/api/users/${user._id}`;
+        return this.http.put(url, user).map(res => res.json());
     }
 
 }

@@ -11,7 +11,7 @@ import {UserService} from './services/user.service';
 import{AlertService} from './services/alert.service';
 import { AdminModule } from './admin/admin.module';
 import {AlertComponent} from './alert.component';
-import { UtilisateurModule } from './utilisateur/utilisateur.module';
+import { UserModule } from './user/user.module';
 
 
 @NgModule({
@@ -25,7 +25,7 @@ import { UtilisateurModule } from './utilisateur/utilisateur.module';
     FormsModule,
     HttpModule,
     AdminModule,
-    UtilisateurModule,
+    UserModule,
     AppRoutingModule,
   ],
   providers: [AuthenticationService, UserService, AlertService],

@@ -8,8 +8,8 @@ import { Router } from '@angular/router';
 
 
 export class AdminHomeComponent{
-	ajout = false;
-	modifier=false;
+	add = false;
+	modify=false;
 
 	constructor(
 		private router: Router,
@@ -17,7 +17,7 @@ export class AdminHomeComponent{
 
 
 	onAjout(){
-		this.router.navigate(['admin/ajout'])
+		this.router.navigate(['admin/add'])
 	}
 
 

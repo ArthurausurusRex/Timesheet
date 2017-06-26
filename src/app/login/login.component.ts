@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 
-import {Utilisateur} from '../utilisateur';
+import {User} from '../user';
 import {AuthenticationService} from '../services/authentication.service';
 import {AlertService} from '../services/alert.service';
 import { UserService } from '../services/user.service'
@@ -14,7 +14,7 @@ import { UserService } from '../services/user.service'
 export class LoginComponent {
   model: any = {};
   returnUrl: String;
-  admin = new Utilisateur('admin', 'admin', 'admin')
+  admin = new User('admin', 'admin', 'admin')
 
   constructor(
     private alertService : AlertService,

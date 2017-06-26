@@ -4,21 +4,21 @@ import { ActivatedRoute, Params, Router } from '@angular/router';
 import { Location }               from '@angular/common';
 
 import {UserService} from '../services/user.service';
-import {Utilisateur} from '../utilisateur';
+import {User} from '../user';
 import {AlertService} from '../services/alert.service'
 
 @Component({
-	selector: 'modifier-utilisateur',
-	templateUrl: 'modifier-utilisateur.component.html'
+	selector: 'modify-user',
+	templateUrl: 'modify-user.component.html'
 })
 
 
-export class ModifierUtilisateurComponent implements OnInit{
-	utilisateur : Utilisateur;
+export class ModifyUserComponent implements OnInit{
+	user : User;
 	
-	roles = ['','gestionnaire', 'utilisateur', 'admin'];
+	roles = ['','manager', 'user', 'admin'];
 	
-	model = new Utilisateur('', 'azertyuiop', this.roles[0], '');
+	model = new User('', 'azertyuiop', this.roles[0], '');
 	
 	submitted = false;
 	
@@ -26,8 +26,8 @@ export class ModifierUtilisateurComponent implements OnInit{
 
 	
 
-	gestionnaires: Utilisateur[];
-	modifier = false;
+	managers: User[];
+	modify = false;
 	supprimer = false;
 	constructor(
     	private userService: UserService,
@@ -42,18 +42,18 @@ export class ModifierUtilisateurComponent implements OnInit{
 		 this.route.params
 		 	.switchMap((params: Params) =>
 		 		this.userService.getOne(params['_id']))
-		 	.subscribe(utilisateur => {this.model = utilisateur, console.log(this.model)});
-		this.userService.getGestionnaires().subscribe(data =>this.gestionnaires = data)		
+		 	.subscribe(user => {this.model = user, console.log(this.model)});
+		this.userService.getManagers().subscribe(data =>this.managers = data)		
 		
 	};
 
-	onModifier(): void {
+	onModify(): void {
 		this.userService.updateOne(this.model).subscribe(res=>{
 			console.log(this.model);
 			console.log(res);
 			this.alertService.success('Utilisateur modifié avec succès');
 			location.reload()})
-		this.modifier=true;
+		this.modify=true;
 		
 		this.router.navigate(['/admin']);
 	};

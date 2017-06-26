@@ -1,6 +1,6 @@
 var passport = require('passport');
 var mongoose = require('mongoose');
-var Utilisateur = mongoose.model('Utilisateur');
+var User = mongoose.model('User');
 var sendJSONresponse = function(res, status, content) {
   res.status(status);
   res.json(content);
@@ -10,19 +10,19 @@ var sendJSONresponse = function(res, status, content) {
 module.exports.create = function(req, res) {
 
 
-  var nvlUtilisateur = new Utilisateur();
+  var newUSer = new USer();
 
-  nvlUtilisateur.email = req.body.email;
-  nvlUtilisateur.role = req.body.role;
-  nvlUtilisateur.setPassword(req.body.password);
+  newUSer.email = req.body.email;
+  newUSer.role = req.body.role;
+  newUSer.setPassword(req.body.password);
 
 
-  nvlUtilisateur.save(function(err) {
+  newUSer.save(function(err) {
     var token;
     if (err) {
       return res.json({success: false, message: 'Utilisateur deja existant' })
     } 
-    token = nvlUtilisateur.generateJwt();
+    token = newUSer.generateJwt();
     res.status(200);
     res.json({
       "message" : "Utilisateur créé avec succès",
