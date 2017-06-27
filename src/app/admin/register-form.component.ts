@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import { UserService} from '../services/user.service';
 import { User } from '../user';
 import { AlertService } from '../services/alert.service';
-
+import {UpdateService} from './admin-services/update-service'
 
 
 @Component({
@@ -22,6 +22,7 @@ export class RegisterFormComponent implements OnInit {
 
 
 	constructor(
+		private updateService : UpdateService,
         private router: Router,
         private userService: UserService,
         private alert: AlertService
@@ -35,7 +36,9 @@ export class RegisterFormComponent implements OnInit {
             .subscribe(
             	data => {
             			this.alert.success('Utilisateur créé avec succès');
-                        location.reload();
+                        //location.reload();
+						this.update();
+
                     }
             	);
         this.router.navigate(['/admin'])
@@ -53,5 +56,9 @@ export class RegisterFormComponent implements OnInit {
     ngOnInit(){
     	this.getManagers();
     }
+
+	update(){
+		this.updateService.announceUserChanged()
+	}
 
 }

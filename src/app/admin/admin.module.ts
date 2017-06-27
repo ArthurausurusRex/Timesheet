@@ -9,6 +9,7 @@ import {ListUsersComponent} from './list-users.component';
 import {AdminRoutingModule} from './admin-routing.module'
 import {ModifyUserComponent} from './modify-user.component';
 import {AdminAlertComponent} from './admin-alert.component';
+import {UpdateService} from './admin-services/update-service';
 
 @NgModule({
 	imports: [
@@ -26,7 +27,7 @@ import {AdminAlertComponent} from './admin-alert.component';
 		AdminAlertComponent
 	],
 
-	providers: []
+	providers: [UpdateService]
 })
 
 

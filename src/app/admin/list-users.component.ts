@@ -5,7 +5,7 @@ import { User } from '../user';
 import { Subscription }from 'rxjs/Subscription'
 
 import {AlertService} from '../services/alert.service';
-
+import { UpdateService} from './admin-services/update-service'
 @Component({
 	selector: 'list-users',
 	templateUrl: 'list-users.component.html'
@@ -21,10 +21,15 @@ export class ListUsersComponent implements OnInit {
 	subscription : Subscription;
 
 	constructor(
+		private updateService : UpdateService,
         private router: Router,
         private userService: UserService,
         private alert: AlertService
-        	) {}
+        	)
+			{
+				this.subscription=updateService.userChanged$.subscribe(Response=> this.ngOnInit()
+				)
+			}
 
 
 	ngOnInit(){

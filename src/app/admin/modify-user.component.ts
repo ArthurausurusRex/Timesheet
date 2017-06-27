@@ -5,7 +5,8 @@ import { Location }               from '@angular/common';
 
 import {UserService} from '../services/user.service';
 import {User} from '../user';
-import {AlertService} from '../services/alert.service'
+import {AlertService} from '../services/alert.service';
+import {UpdateService} from './admin-services/update-service';
 
 @Component({
 	selector: 'modify-user',
@@ -34,7 +35,8 @@ export class ModifyUserComponent implements OnInit{
     	private route: ActivatedRoute,
     	private location: Location,
     	private router: Router,
-    	private alertService: AlertService
+    	private alertService: AlertService,
+		private updateService: UpdateService,
   ) {};
 	
 
@@ -52,20 +54,23 @@ export class ModifyUserComponent implements OnInit{
 			console.log(this.model);
 			console.log(res);
 			this.alertService.success('Utilisateur modifié avec succès');
-			location.reload()})
+			this.update()})
 		this.modify=true;
 		
 		this.router.navigate(['/admin']);
 	};
 
-	onSupprimer(): void {
+	onDelete(): void {
 		this.userService.deleteOne(this.model._id).subscribe(res=>{
 			this.alertService.success('Utilisateur supprimé avec succès')
-			location.reload()});
+			this.update()});
 		this.supprimer=true;
 
 		this.router.navigate(['/admin'])
 	}
 
+	update(){
+		this.updateService.announceUserChanged()
+	}	
 
 }

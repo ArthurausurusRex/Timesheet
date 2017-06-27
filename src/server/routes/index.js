@@ -3,11 +3,10 @@ var router = express.Router();
 var jwt = require('express-jwt');
 var auth = jwt({
   secret: 'MY_SECRET',
- /* getToken: function(req){
-      return (req.headers.authorization)
-  }*/
-  requestProperty: 'payload'
-});
+  getToken: function(req){
+    return (req.headers.authorization)
+}
+ });
 var passport = require('passport');
 
 var ctrlLog = require('../controllers/login.controller');
