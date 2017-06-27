@@ -2,6 +2,7 @@ import {Injectable} from '@angular/core';
 import { Http, Headers, Response }       from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
+import {apiUrl} from '../app.config';
 
 @Injectable()
 export class AuthenticationService{
@@ -55,7 +56,7 @@ export class AuthenticationService{
 
 
 	login(email: String, password: String) {
-		return this.http.post('http://localhost:8080/api/authenticate', { email: email, password: password })
+		return this.http.post(apiUrl+'/authenticate', { email: email, password: password })
             .map((response: Response) => {
                 let token = response.json().token;
                 if (token) {

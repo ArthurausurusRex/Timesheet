@@ -16,7 +16,6 @@ module.exports.create = function(req, res) {
   newUser.role = req.body.role;
   newUser.setPassword(req.body.password);
 
-
   newUser.save(function(err) {
     var token;
     if (err) {

@@ -39,6 +39,7 @@ userSchema.methods.generateJwt = function() { //permet de créer un toekn pour l
     _id: this._id,
     email: this.email,
     role: this.role,
+    isAdmin: this.isAdmin,
     exp: parseInt(expiry.getTime() / 1000),
   }, "MY_SECRET"); // DO NOT KEEP YOUR SECRET IN THE CODE!
 };

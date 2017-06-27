@@ -2,8 +2,9 @@ var passport = require('passport');
 var mongoose = require('mongoose');
 var User = mongoose.model('User');
 
-module.exports.listUsers = function(req, res) { // A protéger
-	User.find({}, function(err, utilisateur){
+module.exports.listUsers = function(req, res) {
+	 // A protéger
+	User.find({}, function(err, user){
 		if (err)
 			res.send(err);
 		res.json(user);

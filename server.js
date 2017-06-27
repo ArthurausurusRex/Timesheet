@@ -7,7 +7,11 @@ var passport = require('passport');
 var cors = require('cors');
 
 
-mongoose.connect('mongodb://localhost:27017/timesheet'); // connect to our database
+
+var serverConfig  = require('./src/server/config/config.server')
+
+
+mongoose.connect(serverConfig.db.uri); // connect to our database
 
 require('./src/server/config/passport')
 var routesApi = require('./src/server/routes/index');
@@ -17,19 +21,15 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
 
-
-
-
-
-var port = process.env.PORT || 8080;        // set our port
+var port = serverConfig.portApi;        // set our port
 
 
 app.use(passport.initialize());
 
 
 // use it before all route definitions
-app.use(cors({origin: 'http://localhost:4200'}));
-app.use('/api', routesApi);
+app.use(cors({origin: serverConfig.adrFront}));
+app.use('/api', routesApi); 
 
 
 app.listen(port);

@@ -16,7 +16,7 @@ export class AdminHomeComponent{
 		){}
 
 
-	onAjout(){
+	onAdd(){
 		this.router.navigate(['admin/add'])
 	}
 

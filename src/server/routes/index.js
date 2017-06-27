@@ -3,8 +3,12 @@ var router = express.Router();
 var jwt = require('express-jwt');
 var auth = jwt({
   secret: 'MY_SECRET',
-  userProperty: 'payload'
+ /* getToken: function(req){
+      return (req.headers.authorization)
+  }*/
+  requestProperty: 'payload'
 });
+var passport = require('passport');
 
 var ctrlLog = require('../controllers/login.controller');
 var ctrlReg = require('../controllers/register.controller');
@@ -18,18 +22,18 @@ router.post('/', function(req, res) {
 router.post('/authenticate', ctrlLog.login);
 
 //users
-router.post('/users',ctrlReg.create);
-router.get('/users', classicControler.listUsers);
+router.post('/users',auth, ctrlReg.create);
+router.get('/users',auth, classicControler.listUsers);
 
 //userId
 
-router.get('/users/:userId',classicControler.getUser);
-router.put('/users/:userId',classicControler.updateUser);
-router.delete('/users/:userId',classicControler.deleteUser);
+router.get('/users/:userId',auth,classicControler.getUser);
+router.put('/users/:userId',auth,classicControler.updateUser);
+router.delete('/users/:userId',auth,classicControler.deleteUser);
 
 // users/:UserRole
 
-router.get('/users/role/:role', classicControler.listUsersByRole)
+router.get('/users/role/:role',auth, classicControler.listUsersByRole)
 
 
 

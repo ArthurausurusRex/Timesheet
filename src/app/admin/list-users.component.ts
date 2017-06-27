@@ -60,7 +60,7 @@ export class ListUsersComponent implements OnInit {
 
 	onModify(user : User): void {
 		this.userSelct = user;
-		this.router.navigate(['/admin/modifier', this.userSelct._id]);	
+		this.router.navigate(['/admin/modify', this.userSelct._id]);	
 	}
 
 		
