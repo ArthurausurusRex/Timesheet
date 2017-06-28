@@ -1,0 +1,29 @@
+<div class="container">
+    <table class="table table-bordered table-condensed">
+
+        <tr *ngFor="let timeLine of lines">
+            <th>{{timeLine.contract}}</th>
+            <th>{{timeLine.clientName}}</th>
+            <th>{{timeLine.projectName}}</th>
+            <th *ngFor="let day of timeLine.days">{{day}}</th>
+        </tr>
+    </table>
+    
+    <div [hidden]="addline">
+        <button class="btn btn-primary" (click)="addline=!addline">
+            Ajouter une ligne
+        </button>
+    </div>
+
+    <div [hidden]="!addline">
+        <form class= "form-inline">
+            <input type="text" class="form-control" placeholder="Contrat">
+            <input type="text" class="form-control" placeholder="Nom du Client">
+            <input type="text" class="form-control" placeholder="Nom du projet">
+
+            <button class="btn btn-success" (click)="addLine()">Valider</button>
+            <button class="btn btn-danger" (click)="addline=false">Annuler</button>
+        </form>
+    </div>
+    
+</div>
