@@ -69,6 +69,10 @@ export class UserService {
         return this.http.put(url, user, this.jwt()).map(res => res.json());
     }
 
+    getManagedUsers(email: String) : Observable <any>{
+        return this.http.get(apiUrl + '/users/manager', this.jwt()).map(res => res.json())
+    } //Marche pas du tout 
+
 }
 
 

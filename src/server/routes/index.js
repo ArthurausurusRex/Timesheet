@@ -34,6 +34,9 @@ router.delete('/users/:userId',auth,classicControler.deleteUser);
 
 router.get('/users/role/:role',auth, classicControler.listUsersByRole)
 
+//users
+router.get('/users/manager', classicControler.listUsersByManager) // marche pas du tout
+
 
 
 module.exports = router;
