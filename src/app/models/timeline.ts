@@ -8,43 +8,43 @@ export class TimeLine{
 
     constructor(numberOfDays,contract, clientName, projectName, workedDays, first)
         { 
-            this.numberOfDays=numberOfDays
-            this.clientName=clientName,
-            this.contract=contract,
-            this.projectName=projectName,
-            this.workedDays = workedDays,
-            this.days=this.setDays(numberOfDays, first)
+            this.numberOfDays = numberOfDays;
+            this.clientName = clientName;
+            this.contract = contract;
+            this.projectName = projectName;
+            this.workedDays = workedDays;
+            this.days = this.setDays(numberOfDays, first);
 
         }
 
     setNumberOfDays(num: number){
-        this.numberOfDays=num;
+        this.numberOfDays = num;
     }
 
     setContract(contract: string){
-        this.contract= contract;
+        this.contract = contract;
     }
 
     setProjectName(project: string){
-        this.projectName= project;
+        this.projectName = project;
     }
 
     setClientName(client: string){
-        this.clientName=client;
+        this.clientName = client;
     }
 
-    setWorkedDays(numDays : number){
-        this.workedDays =numDays;
+    setWorkedDays(numDays: number){
+        this.workedDays = numDays;
     }
 
     setDays(numberOfDays: number, first: boolean){
-        var line=[];
-        for (var i = 1; i  <=  numberOfDays ; i++ ){
+        let line=[];
+        for (let i = 1; i  <=  numberOfDays ; i++ ){
             if(first){
                 line.push(i)
             }
             else{
-                line.push[0]
+                line.push(0)
             }
         }
         return line;

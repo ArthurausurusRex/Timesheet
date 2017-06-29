@@ -1,0 +1,17 @@
+<div [hidden]="addline">
+        <button class="btn btn-primary" (click)="addline=!addline">
+            Ajouter une ligne
+        </button>
+</div>
+
+    <div [hidden]="!addline">
+        <form  (ngSubmit) = "addLine()" class= "form-inline">
+            <input type="text" class="form-control" placeholder="Contrat" [(ngModel)]="timeLine.contract" name="contract">
+            <input type="text" class="form-control" placeholder="Nom du Client" [(ngModel)]="timeLine.clientName" name="clientName">
+            <input type="text" class="form-control" placeholder="Nom du projet" [(ngModel)]="timeLine.projectName" name="projectName">
+
+            <button class="btn btn-success" type="submit">Valider</button>
+            <button class="btn btn-danger" (click)="addline=false">Annuler</button>
+        </form>
+    </div>
+    
