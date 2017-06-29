@@ -19,14 +19,6 @@ module.exports.listUsersByRole = function(req, res) {
 	});
 };
 
-module.exports.listUsersByManager = function(req, res){
-	User.find({manager : req.params.manager}, {email: true}, function(err,user){
-		ir (err)
-			res.send(err);
-		res.json(user)
-	});
-};
-
 
 module.exports.getUser = function(req, res) {
 	User.findById(req.params.userId, function(err, user){
