@@ -38,9 +38,13 @@ export class TimeLineService{
         
     }
 
-    deleTimeLine(_id: String) : Observable<any> {
+    deleteTimeLine(_id: String) : Observable<any> {
         return this.http.delete(apiUrl +`/timelines/${_id}`, this.jwt() )
 
+    }
+
+    updateTimeLine(timeLine): Observable <any> {
+        return this.http.put(apiUrl+ +`/timelines/${timeLine._id}`,timeLine, this.jwt()).map(res=>res.json())
     }
 
 }

@@ -53,7 +53,14 @@ export class TimeScheduleComponent implements OnInit {
     }
 
     deleteTimeLine(){
-        this.timeLineService.deleTimeLine(this.timeLineSelected._id).subscribe(
+        this.timeLineService.deleteTimeLine(this.timeLineSelected._id).subscribe(
+            data => this.ngOnInit(),
+            err => console.log(err)
+        );
+    }
+
+    updateTimeLine(){
+        this.timeLineService.updateTimeLine(this.timeLineSelected).subscribe(
             data => this.ngOnInit(),
             err => console.log(err)
         );

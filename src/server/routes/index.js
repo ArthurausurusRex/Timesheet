@@ -40,6 +40,7 @@ router.get('/users/role/:role',auth, classicControler.listUsersByRole)
 
 router.post('/timelines', auth, ctrlLine.createTimeLine)
 router.delete('/timelines/:_id', auth, ctrlLine.deleteTimeLine)
+router.put('/timelines/:_id',auth, ctrlLine.updateTimeLine)
 //Timelines/:Month
 
 router.get('/timelines/:month',auth,ctrlLine.getTimeLinesByMonth)

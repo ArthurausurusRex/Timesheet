@@ -34,6 +34,15 @@ module.exports.deleteTimeLine = function(req,res){
     });
 };
 
+module.exports.updateTimeLine = function(req,res){
+    TimeLine.findOneAndUpdate({_id: req.params._id},req.body, function(err, timeLine){
+        if (err)
+            res.send(err);
+        res.json({message: 'TimeLine bien modifiée'})
+    });
+};
+
+
 
 
 
