@@ -24,7 +24,11 @@ export class NewLineFormComponent  {
         this.addline = false;
         console.log(this.line);
         const timeLine = new TimeLine(this.line);
-        this.timeLineService.create(timeLine);
+        this.timeLineService.create(timeLine).subscribe(
+            data => {
+                console.log('spasseqqchose')
+            }
+        );
 
     }
 

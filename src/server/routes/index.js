@@ -38,7 +38,7 @@ router.get('/users/role/:role',auth, classicControler.listUsersByRole)
 
 //Timeline
 
-router.post('/timelines', auth, ctrlLine.createTimeLine)
+router.post('/timelines',auth, ctrlLine.createTimeLine)
 
 
 module.exports = router;
