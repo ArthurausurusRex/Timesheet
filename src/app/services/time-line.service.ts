@@ -38,4 +38,9 @@ export class TimeLineService{
         
     }
 
+    deleTimeLine(_id: String) : Observable<any> {
+        return this.http.delete(apiUrl +`/timelines/${_id}`, this.jwt() )
+
+    }
+
 }

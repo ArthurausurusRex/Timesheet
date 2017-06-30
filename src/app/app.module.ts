@@ -33,7 +33,12 @@ import { ManagerModule } from './manager/manager.module';
     AppRoutingModule,
     ManagerModule,
   ],
-  providers: [AuthenticationService, UserService, AlertService, TimeLineService],
+  providers: [
+    AuthenticationService,
+    UserService,
+    AlertService,
+    TimeLineService
+    ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

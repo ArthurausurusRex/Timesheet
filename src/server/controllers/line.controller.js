@@ -26,5 +26,15 @@ module.exports.createTimeLine = function(req,res){
     });
 }
 
+module.exports.deleteTimeLine = function(req,res){
+    TimeLine.remove({ _id: req.params._id}, function(err, timeLine){
+        if (err)
+            res.send(err);
+        res.json({message: 'Timeline bien suprimée'})
+    });
+};
+
+
+
 
 

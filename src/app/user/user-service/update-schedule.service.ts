@@ -6,11 +6,11 @@ import { Injectable } from '@angular/core';
 @Injectable()
 export class UpdateScheduleService {
 
-    private newLineCreatedSource = new Subject<TimeLine>();
+    private lineUpdatedSource = new Subject();
 
-    newLineCreated$ = this.newLineCreatedSource.asObservable()
+    lineUpdated$ = this.lineUpdatedSource.asObservable()
 
-    NewLine(timeLine : TimeLine) {
-        this.newLineCreatedSource.next(timeLine);
+    announceLineUpdated() {
+        this.lineUpdatedSource.next();
     }
 }

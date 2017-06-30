@@ -1,4 +1,5 @@
 import { Component, OnInit} from '@angular/core';
+import { Subscription }from 'rxjs/Subscription'
 
 import { Line } from './../models/line';
 import { TimeLine } from './../models/timeline';
@@ -20,19 +21,22 @@ export class TimeScheduleComponent implements OnInit {
     lines= [];
     timeLines= [];
     numberOfDays = 31;
-    firstLine = new TimeLine(new Line(this.numberOfDays, 'Contrats', 'Nom client', 'Nom du projet', 0,true));
-    lineSelected : number;
-    month = '1';
-    result: any;
+    firstLine = new Line(this.numberOfDays, 'Contrats', 'Nom client', 'Nom du projet', 0,true);
+    timeLineSelected : any;
+    date = new Date();
+    month = ''+ this.date.getMonth();
+    subscription : Subscription;
     
     constructor(
         private updateLineService: UpdateScheduleService,
         private timeLineService: TimeLineService
-    ){}
+    ){
+        this.subscription = updateLineService.lineUpdated$.subscribe(Response => this.ngOnInit());
+    }
 
 
     ngOnInit() {
-   
+        this.getTimeLines(this.month);
      };
 
     selectLine(timeLine: TimeLine){
@@ -41,14 +45,17 @@ export class TimeScheduleComponent implements OnInit {
 
     getTimeLines(month : String){
         this.timeLineService.getTimeLinesByMonth(month).subscribe(
-            data => {this.result = data,
-                 console.log(data)},
+            data => {this.timeLines = data;
+                 console.log(this.timeLines)},
             error => console.log(error),
 
         );
     }
 
-    testButton(){
-        this.getTimeLines(this.month);
+    deleteTimeLine(){
+        this.timeLineService.deleTimeLine(this.timeLineSelected._id).subscribe(
+            data => this.ngOnInit(),
+            err => console.log(err)
+        );
     }
 }

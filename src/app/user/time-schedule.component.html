@@ -1,26 +1,28 @@
-<div class="container" >
+<div class="container">
     <table class="table table-bordered table-condensed">
 
         <tr>
-            <th>{{firstLine.contract}}</th>
-            <th>{{firstLine.clientName}}</th>
-            <th>{{firstLine.projectName}}</th>
-            <th>Jours ouvrés</th>
-            <th *ngFor="let day of firstLine.days">{{day}}</th>
+            <th class="text-center">{{firstLine.contract}}</th>
+            <th class="text-center">{{firstLine.clientName}}</th>
+            <th class="text-center">{{firstLine.projectName}}</th>
+            <th class="text-center">Jours ouvrés</th>
+            <th class="text-center" *ngFor="let day of firstLine.days">{{day}}</th>
         </tr>
 
-        <tr *ngFor="let timeLine of lines">
-            <td>{{timeLine.contract}}</td>
-            <td>{{timeLine.clientName}}</td>
-            <td>{{timeLine.projectName}}</td>
-            <td>{{timeLine.workedDays}}</td>
-            <td *ngFor="let day of timeLine.days">{{day}}</td>
-            <td><button class= "btn btn-danger" (click)="selectLine(timeLine)">del</button></td>
+        <tr *ngFor="let timeLine of timeLines">
+            <td>{{timeLine.line.contract}}</td>
+            <td>{{timeLine.line.clientName}}</td>
+            <td>{{timeLine.line.projectName}}</td>
+            <td class="text-center">{{timeLine.line.workedDays}}</td>
+            <td class="text-center" *ngFor="let day of timeLine.line.days">{{day}}</td>
+            <td><button class= "btn btn-sm btn-danger" (click)="timeLineSelected=timeLine" (click)="deleteTimeLine()">
+                    del
+                </button>
+            </td>
         </tr>
 
 
     </table>
-    <button class ="btn" (click)="testButton()">Test</button>
     
     <new-line-form></new-line-form>
 </div>
