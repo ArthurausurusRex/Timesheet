@@ -1,7 +1,10 @@
 var mongoose = require('mongoose');
 
 var timeLineSchema = new mongoose.Schema({
-    email : String,
+    email : { 
+        type: String,
+        required : true,
+    },
     line : Object,
     month : {
         type: Number,

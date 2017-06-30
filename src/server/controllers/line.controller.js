@@ -6,16 +6,15 @@ module.exports.getTimeLinesByMonth = function(req,res) {
     TimeLine.find({email : req.user.email, month : req.params.month}, function (err, timeLine){
         if(err)
             res.send(err);
-        res.json(timeLines)
+        res.json(timeLine)
     })
 }
 
 module.exports.createTimeLine = function(req,res){
     var newTimeLine = new TimeLine()
-
     newTimeLine.month = req.body.month;
     newTimeLine.line = req.body.line;
-    newTimeLine.user = req.user.email;
+    newTimeLine.email = req.user.email;
 
     newTimeLine.save(function(err) {
         if(err){

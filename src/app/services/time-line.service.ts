@@ -31,4 +31,11 @@ export class TimeLineService{
 
     }
 
+    getTimeLinesByMonth(month: String) : Observable<any> {
+        return this.http.get(apiUrl + `/timelines/${month}`, this.jwt())
+        .map(response => response.json());
+            /*console.log(response.json())*/
+        
+    }
+
 }

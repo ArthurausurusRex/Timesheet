@@ -26,7 +26,7 @@ export class NewLineFormComponent  {
         const timeLine = new TimeLine(this.line);
         this.timeLineService.create(timeLine).subscribe(
             data => {
-                console.log('spasseqqchose')
+                console.log('succès');
             }
         );
 

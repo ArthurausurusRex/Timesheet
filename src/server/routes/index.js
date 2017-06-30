@@ -40,5 +40,9 @@ router.get('/users/role/:role',auth, classicControler.listUsersByRole)
 
 router.post('/timelines',auth, ctrlLine.createTimeLine)
 
+//Timelines/:Month
+
+router.get('/timelines/:month',auth,ctrlLine.getTimeLinesByMonth)
+
 
 module.exports = router;
