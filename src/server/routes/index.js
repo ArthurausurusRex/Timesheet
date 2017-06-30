@@ -12,6 +12,8 @@ var passport = require('passport');
 var ctrlLog = require('../controllers/login.controller');
 var ctrlReg = require('../controllers/register.controller');
 var classicControler = require('../controllers/classic.controller');
+var ctrlLine = require('../controllers/line.controller')
+
 //test
 router.post('/', function(req, res) {
     res.json({ message: req.body});   
@@ -34,9 +36,9 @@ router.delete('/users/:userId',auth,classicControler.deleteUser);
 
 router.get('/users/role/:role',auth, classicControler.listUsersByRole)
 
-//users
-router.get('/users/manager', classicControler.listUsersByManager) // marche pas du tout
+//Timeline
 
+router.post('/timelines', auth, ctrlLine.createTimeLine)
 
 
 module.exports = router;

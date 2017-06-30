@@ -1,5 +1,7 @@
+import { TimeLineService } from './../services/time-line.service';
 import { UpdateScheduleService } from './user-service/update-schedule.service';
 import { TimeLine } from './../models/timeline';
+import { Line } from '../models/line';
 
 import { Component } from '@angular/core';
 
@@ -11,16 +13,18 @@ import { Component } from '@angular/core';
 export class NewLineFormComponent  {
      addline= false;
      numberOfDays = 31;
-     timeLine = new TimeLine(this.numberOfDays, '','','',0 ,false);
-
-    constructor(private updateLineService : UpdateScheduleService) { }
+     line = new Line(this.numberOfDays, '','','',0 ,false);
+    
+    constructor(
+        private updateLineService : UpdateScheduleService,
+        private timeLineService : TimeLineService,
+                ) { }
 
     addLine(){
         this.addline = false;
-        console.log(this.timeLine);
-        let newLine = this.timeLine;
-        this.updateLineService.NewLine(newLine);
-        this.updateLineService.
+        console.log(this.line);
+        const timeLine = new TimeLine(this.line);
+        this.timeLineService.create(timeLine);
 
     }
 

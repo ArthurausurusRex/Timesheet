@@ -1,4 +1,4 @@
-import { TimeLine } from './timeline';
+/*import { TimeLine } from './timeline';
 
 export class SaisieTemps{
     
@@ -12,4 +12,4 @@ export class SaisieTemps{
 
 
 
-}
+}*/

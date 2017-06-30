@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 
 @Component({
 	selector: 'user-home',
-	template: `<time-schedule></time-schedule>`,
+	template: `<new-line-form></new-line-form>`,
 })
 
 

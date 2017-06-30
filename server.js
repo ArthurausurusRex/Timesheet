@@ -3,6 +3,7 @@ var app        = express();                 // define our app using express
 var bodyParser = require('body-parser');
 var mongoose   = require('mongoose');
 var User = require('./src/server/models/user');
+var TimeLine = require ('./src/server/models/timeline');
 var passport = require('passport');
 var cors = require('cors');
 

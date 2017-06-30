@@ -11,6 +11,7 @@ import { LoginComponent } from './login/login.component';
 import { AuthenticationService } from './services/authentication.service';
 import { UserService} from './services/user.service';
 import { AlertService} from './services/alert.service';
+import { TimeLineService } from './services/time-line.service';
 import { AdminModule } from './admin/admin.module';
 import {AlertComponent} from './alert.component';
 import { UserModule } from './user/user.module';
@@ -32,7 +33,7 @@ import { ManagerModule } from './manager/manager.module';
     AppRoutingModule,
     ManagerModule,
   ],
-  providers: [AuthenticationService, UserService, AlertService],
+  providers: [AuthenticationService, UserService, AlertService, TimeLineService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

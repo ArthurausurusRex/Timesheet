@@ -6,9 +6,9 @@
 
     <div [hidden]="!addline">
         <form  (ngSubmit) = "addLine()" class= "form-inline">
-            <input type="text" class="form-control" placeholder="Contrat" [(ngModel)]="timeLine.contract" name="contract">
-            <input type="text" class="form-control" placeholder="Nom du Client" [(ngModel)]="timeLine.clientName" name="clientName">
-            <input type="text" class="form-control" placeholder="Nom du projet" [(ngModel)]="timeLine.projectName" name="projectName">
+            <input type="text" class="form-control" placeholder="Contrat" [(ngModel)]="line.contract" name="contract">
+            <input type="text" class="form-control" placeholder="Nom du Client" [(ngModel)]="line.clientName" name="clientName">
+            <input type="text" class="form-control" placeholder="Nom du projet" [(ngModel)]="line.projectName" name="projectName">
 
             <button class="btn btn-success" type="submit">Valider</button>
             <button class="btn btn-danger" (click)="addline=false">Annuler</button>

@@ -1,3 +1,4 @@
+import { Line } from './../models/line';
 import { UpdateScheduleService } from './user-service/update-schedule.service';
 import { Component, OnInit} from '@angular/core';
 import { TimeLine } from './../models/timeline';
@@ -14,7 +15,7 @@ export class TimeScheduleComponent implements OnInit {
 
     lines= [];
     numberOfDays = 31;
-    firstLine = new TimeLine(this.numberOfDays, 'Contrats', 'Nom client', 'Nom du projet', 0,true);
+    firstLine = new TimeLine(new Line(this.numberOfDays, 'Contrats', 'Nom client', 'Nom du projet', 0,true));
     lineSelected : number;
 
     constructor(private updateLineService: UpdateScheduleService){
