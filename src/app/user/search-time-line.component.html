@@ -1,9 +1,8 @@
-<div class="container">
-    <form class = "form-inline">
+
+    <form class = "form-inline" (ngSubmit)="search()">
         <div class="form-group">
-          <input type="text" class="form-control" placeholder="mois" [(ngModel)]="month" name="month">
+          <input type="text" class="form-control" placeholder="mois" [(ngModel)]="month" name= "month">
           <input type="text" class="form-control" placeholder="année" [(ngModel)]="year" name = "year">
         </div>
         <button type="submit" class="btn btn-default">Rechercher</button>
       </form>
-</div>

@@ -27,7 +27,6 @@ export class  UserComponent implements OnInit{
 	 };
 	 
 	 ngOnInit(){
-		 this.router.navigate(['user/home'])
 
 	 }
 }

@@ -21,12 +21,8 @@ const userRoutes: Routes = [
 				canActivateChild: [AuthGuard],
 				children: [
 					{
-						path: 'home',
-						component: TimeScheduleComponent,
-					},
-					{
-						path: 'search',
-						component: SearchTimeLineComponent, 
+						path: '',
+						component: UserHomeComponent,
 					}
 				]
 			}
