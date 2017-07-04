@@ -4,9 +4,12 @@
 	          <a class="navbar-brand" routerLink="/user">Utilisateur</a>
 	        </div>
 	        <div class="nav navbar-nav navbar-right">
-	        	<button class="btn btn-danger navbar-btn " (click)="logout()">Logout</button>
-	        </div>
+				<ul class="nav navbar-nav">
+					<li><a routerLink="/user/search">Rechercher une saise de temps</a></li>
+        			<li><button class="btn btn-danger navbar-btn " (click)="logout()">Logout</button></li>
+				</ul>
+			</div>
 	    </div>
 	</nav>
 
-<user-home></user-home>
+<router-outlet></router-outlet>

@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
+import { SearchTimeLineComponent } from './search-time-line.component';
 import { UserComponent } from './user.component';
 import { UserHomeComponent } from './user-home.component';
 import { UserRoutingModule } from './user-routing.module';
@@ -20,7 +21,8 @@ import { UpdateScheduleService } from './user-service/update-schedule.service';
 		UserComponent,
 		UserHomeComponent,
 		TimeScheduleComponent,
-		NewLineFormComponent
+		NewLineFormComponent,
+		SearchTimeLineComponent,
 	],
 
 	providers: [UpdateScheduleService]
