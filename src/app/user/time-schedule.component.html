@@ -6,7 +6,7 @@
             <th class="text-center">{{firstLine.clientName}}</th>
             <th class="text-center">{{firstLine.projectName}}</th>
             <th class="text-center">Jours ouvrés</th>
-            <th class="text-center" *ngFor="let day of firstLine.days">{{day}}</th>
+            <th class="text-center" *ngFor="let day of firstLine.days" style="width: 600rem">{{day.value}}</th>
         </tr>
 
         <tr *ngFor="let timeLine of timeLines">
@@ -14,16 +14,32 @@
             <td>{{timeLine.line.clientName}}</td>
             <td>{{timeLine.line.projectName}}</td>
             <td class="text-center">{{timeLine.line.workedDays}}</td>
-            <td class="text-center" *ngFor="let day of timeLine.line.days">{{day}}</td>
+            <td class="text-center" *ngFor="let day of timeLine.line.days" (click) ="day.modify=true" (click) = "timeLineSelected=timeLine">
+                <div [hidden]="!day.isWorkDay">
+                    <span [hidden] = "day.modify">{{day.value}}</span>                
+                    <input [hidden]= "!day.modify" type="number" #box (keyup.enter)="updateDay(day, box.value)" min=0 max = 1 step=0.25>
+                </div>
+
+            </td>
             <td><button class= "btn btn-sm btn-danger" (click)="timeLineSelected=timeLine" (click)="deleteTimeLine()">
                     del
                 </button>
             </td>
         </tr>
 
+         <tr>
+            <th class="text-center">{{lastLine.contract}}</th>
+            <th class="text-center">{{lastLine.clientName}}</th>
+            <th class="text-center">{{lastLine.projectName}}</th>
+            <th class="text-center">{{lastLine.workedDays}}</th>
+            <th class="text-center" *ngFor="let day of lastLine.days">
+                <div [hidden]="!day.isWorkDay"> 
+                    {{day.value}}
+                </div>
+            </th>
+        </tr>
 
     </table>
     
     <new-line-form></new-line-form>
 </div>
-   

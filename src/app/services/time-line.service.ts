@@ -44,7 +44,7 @@ export class TimeLineService{
     }
 
     updateTimeLine(timeLine): Observable <any> {
-        return this.http.put(apiUrl+ +`/timelines/${timeLine._id}`,timeLine, this.jwt()).map(res=>res.json())
+        return this.http.put(apiUrl+`/timelines/${timeLine._id}`,timeLine, this.jwt()).map(res=>res.json())
     }
 
 }

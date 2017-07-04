@@ -1,6 +1,7 @@
 import { Component, OnInit} from '@angular/core';
 import { Subscription }from 'rxjs/Subscription'
 
+import { Day } from './../models/day'
 import { Line } from './../models/line';
 import { TimeLine } from './../models/timeline';
 import { UpdateScheduleService } from './user-service/update-schedule.service';
@@ -18,20 +19,23 @@ import { TimeLineService } from '../services/time-line.service';
 export class TimeScheduleComponent implements OnInit {
 
 
-    lines= [];
-    timeLines= [];
-    numberOfDays = 31;
-    firstLine = new Line(this.numberOfDays, 'Contrats', 'Nom client', 'Nom du projet', 0,true);
-    timeLineSelected : any;
+    lines= new Array<Line>();
+    timeLines= Array<TimeLine>();
+    firstLine = new Line('Contrats', 'Nom client', 'Nom projet', 0,true);
+    lastLine = new Line('Total', 'Total','Total',0,false);
+    timeLineSelected : TimeLine;
+    daySelected : Day;
     date = new Date();
     month = ''+ this.date.getMonth();
     subscription : Subscription;
     
+
+    
     constructor(
         private updateLineService: UpdateScheduleService,
-        private timeLineService: TimeLineService
-    ){
+        private timeLineService: TimeLineService){
         this.subscription = updateLineService.lineUpdated$.subscribe(Response => this.ngOnInit());
+        console.log(new Date(2017,6,2))
     }
 
 
@@ -39,14 +43,10 @@ export class TimeScheduleComponent implements OnInit {
         this.getTimeLines(this.month);
      };
 
-    selectLine(timeLine: TimeLine){
-        console.log(this.lines.indexOf(timeLine));
-    }
-
     getTimeLines(month : String){
         this.timeLineService.getTimeLinesByMonth(month).subscribe(
             data => {this.timeLines = data;
-                 console.log(this.timeLines)},
+                    this.setTotal()},
             error => console.log(error),
 
         );
@@ -65,4 +65,37 @@ export class TimeScheduleComponent implements OnInit {
             err => console.log(err)
         );
     }
+
+    updateWorkedDays(){
+        this.timeLineSelected.line.workedDays=0;
+        for (let day of this.timeLineSelected.line.days){
+            this.timeLineSelected.line.workedDays = this.timeLineSelected.line.workedDays + day.value;
+        }
+
+    }
+
+    updateDay(day: Day, value){
+        day.value=parseFloat(value);
+        day.modify=false;
+        this.setTotal();
+        this.updateWorkedDays();
+        this.updateTimeLine();
+
+    }
+
+    setTotal(){
+        for (let day of this.lastLine.days){
+            let total = 0;
+            let i = day.numOfDay;
+            let workDayTotal = 0
+            for (let timeLine of this.timeLines){
+                total = total+timeLine.line.days[i-1].value
+                workDayTotal = timeLine.line.workedDays + workDayTotal
+            }
+            this.lastLine.workedDays=workDayTotal;
+            day.value=total;
+        }
+    }
+
+    
 }

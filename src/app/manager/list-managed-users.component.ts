@@ -32,19 +32,19 @@ export class ListManagedUsersComponent implements OnInit {
 
 
 	ngOnInit(){
-		this.getManagedUsers();
+		
 	}	
 
 
 
-	getManagedUsers(){
+	/*getManagedUsers(){
 		this.userService.getManagedUsers(this.authenticationService.currentUser().email)
     					.subscribe(
     				data=> {this.managedUsers =  data
     						},
     				error => console.log(error));
 
-	}
+	}*/
 
     
 		

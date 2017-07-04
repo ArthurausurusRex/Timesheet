@@ -9,6 +9,10 @@ var timeLineSchema = new mongoose.Schema({
     month : {
         type: Number,
         required : true,
+    },
+    year : {
+        type: Number,
+        required: true,
     }
 })
 

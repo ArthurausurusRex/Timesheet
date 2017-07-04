@@ -13,12 +13,12 @@ import { Component } from '@angular/core';
 export class NewLineFormComponent  {
      addline= false;
      numberOfDays = 31;
-     line = new Line(this.numberOfDays, '','','',0 ,false);
+     line = new Line('','','',0 ,false);
     
     constructor(
         private updateLineService : UpdateScheduleService,
         private timeLineService : TimeLineService,
-                ) { }
+        ) { }
 
     addLine(){
         this.addline = false;

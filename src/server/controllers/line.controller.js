@@ -2,8 +2,8 @@ var mongoose = require('mongoose');
 var User = mongoose.model('User');
 var TimeLine = mongoose.model('TimeLine');
 
-module.exports.getTimeLinesByMonth = function(req,res) {
-    TimeLine.find({email : req.user.email, month : req.params.month}, function (err, timeLine){
+module.exports.getTimeLinesByDate = function(req,res) {
+    TimeLine.find({email : req.user.email, month : req.params.month, year : req.params.year}, function (err, timeLine){
         if(err)
             res.send(err);
         res.json(timeLine)
