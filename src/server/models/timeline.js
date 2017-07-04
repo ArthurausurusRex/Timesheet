@@ -13,6 +13,14 @@ var timeLineSchema = new mongoose.Schema({
     year : {
         type: Number,
         required: true,
+    },
+    validated: {
+        type: Boolean,
+        required :true
+    },
+    submitted : {
+        type: Boolean,
+        required: true,
     }
 })
 

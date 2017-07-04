@@ -43,7 +43,7 @@ router.delete('/timelines/:_id', auth, ctrlLine.deleteTimeLine)
 router.put('/timelines/:_id',auth, ctrlLine.updateTimeLine)
 //Timelines/:Month
 
-router.get('/timelines/:month',auth,ctrlLine.getTimeLinesByDate)
+router.get('/timelines/:year/:month',auth,ctrlLine.getTimeLinesByDate)
 
 
 module.exports = router;

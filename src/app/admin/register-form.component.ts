@@ -36,7 +36,6 @@ export class RegisterFormComponent implements OnInit {
             .subscribe(
             	data => {
             			this.alert.success('Utilisateur créé avec succès');
-                        //location.reload();
 						this.update();
 
                     }

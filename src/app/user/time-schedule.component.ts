@@ -13,7 +13,8 @@ import { TimeLineService } from '../services/time-line.service';
 
 @Component({
     selector: 'time-schedule',
-    templateUrl: 'time-schedule.component.html'
+    templateUrl: 'time-schedule.component.html',
+    styleUrls:['./time-schedule.component.css']
 })
 
 export class TimeScheduleComponent implements OnInit {
@@ -27,7 +28,9 @@ export class TimeScheduleComponent implements OnInit {
     daySelected : Day;
     date = new Date();
     month = ''+ this.date.getMonth();
+    year= ''+ this.date.getFullYear();
     subscription : Subscription;
+    timeLinesSubmitted: boolean;
     
 
     
@@ -40,13 +43,14 @@ export class TimeScheduleComponent implements OnInit {
 
 
     ngOnInit() {
-        this.getTimeLines(this.month);
+        this.getTimeLines(this.month, this.year);
      };
 
-    getTimeLines(month : String){
-        this.timeLineService.getTimeLinesByMonth(month).subscribe(
+    getTimeLines(month : String, year: String){
+        this.timeLineService.getTimeLinesByDate(month, year).subscribe(
             data => {this.timeLines = data;
-                    this.setTotal()},
+                    this.setTotal();
+                    this.timeLinesSubmitted=this.checkTimeLinesSubmitted()},
             error => console.log(error),
 
         );
@@ -67,7 +71,7 @@ export class TimeScheduleComponent implements OnInit {
     }
 
     updateWorkedDays(){
-        this.timeLineSelected.line.workedDays=0;
+        this.timeLineSelected.line.workedDays = 0;
         for (let day of this.timeLineSelected.line.days){
             this.timeLineSelected.line.workedDays = this.timeLineSelected.line.workedDays + day.value;
         }
@@ -75,8 +79,8 @@ export class TimeScheduleComponent implements OnInit {
     }
 
     updateDay(day: Day, value){
-        day.value=parseFloat(value);
-        day.modify=false;
+        day.value = parseFloat(value);
+        day.modify = false;
         this.setTotal();
         this.updateWorkedDays();
         this.updateTimeLine();
@@ -97,5 +101,20 @@ export class TimeScheduleComponent implements OnInit {
         }
     }
 
-    
+    submitTimeLines(){
+        for (let timeLine of this.timeLines){
+            this.timeLineSelected = timeLine;
+            this.timeLineSelected.submitted = true;
+            this.updateTimeLine();
+        }
+    }
+
+    checkTimeLinesSubmitted() : boolean {
+        for (const timeLine of this.timeLines){
+            if (!timeLine.submitted){
+                return false;
+            }
+        }
+        return true;
+    }
 }

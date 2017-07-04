@@ -15,6 +15,9 @@ module.exports.createTimeLine = function(req,res){
     newTimeLine.month = req.body.month;
     newTimeLine.line = req.body.line;
     newTimeLine.email = req.user.email;
+    newTimeLine.year = req.body.year;
+    newTimeLine.validated = req.body.validated;
+    newTimeLine.submitted = req.body.submitted;
 
     newTimeLine.save(function(err) {
         if(err){
