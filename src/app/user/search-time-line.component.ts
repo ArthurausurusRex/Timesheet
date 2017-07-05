@@ -12,14 +12,16 @@ import { TimeLine } from './../models/timeline';
 export class SearchTimeLineComponent implements OnInit {
     month: string;
     year: string;
-    timeLines: Array<TimeLine>
+    timeLines: Array<TimeLine>;
+    months = ["janvier", "févier", "mars", "avril", "mai", "juin", "juillet", "août", "septembre", "octobre", "novembre", "décembre"];
     constructor(private updateService: UpdateScheduleService) { }
 
     ngOnInit() { }
 
     search() {
-        const month = this.month;
+        const numMonth = '' + this.months.indexOf(this.month);
+        console.log(numMonth);
         const year = this.year;
-        this.updateService.announceLineSearched(month, year);
+        this.updateService.announceLineSearched(numMonth, year);
     }
 }

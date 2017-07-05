@@ -20,32 +20,35 @@ import { TimeLineService } from '../services/time-line.service';
 export class TimeScheduleComponent implements OnInit {
 
 
+    date = new Date();
+    month = this.date.getMonth()
+    year= ''+ this.date.getFullYear();
     lines= new Array<Line>();
     timeLines= Array<TimeLine>();
-    firstLine = new Line('Contrats', 'Nom client', 'Nom projet', 0, true);
-    lastLine = new Line('Total', 'Total', 'Total', 0, false);
     timeLineSelected : TimeLine;
     daySelected : Day;
-    date = new Date();
-    month = ''+ this.date.getMonth();
-    year= ''+ this.date.getFullYear();
-    subscription : Subscription;
-    searchSubscription : Subscription;
-    timeLinesSubmitted: boolean;
-    
+    firstLine = new Line('Contrats', 'Nom client', 'Nom projet', 0, true, this.month, this.year);
+    lastLine = new Line('Total', 'Total', 'Total', 0, false, this.month, this.year);
 
-    
+    subscription: Subscription;
+    searchSubscription: Subscription;
+    timeLinesSubmitted: boolean;
+    canSubmit: boolean;
+
+
     constructor(
         private updateLineService: UpdateScheduleService,
-        private timeLineService: TimeLineService){
+        private timeLineService: TimeLineService)
+        {
         this.subscription = updateLineService.lineUpdated$.subscribe(Response => this.ngOnInit());
         this.searchSubscription =updateLineService.lineSearched$.subscribe(Response => this.onSearch(Response))
-        console.log(new Date(2017,6,2))
+        this.canSubmit=false;
     }
 
 
     ngOnInit() {
-        this.getTimeLines(this.month, this.year);
+        this.getTimeLines(''+this.month, this.year);
+        console.log('onInit')
      };
 
     getTimeLines(month : String, year: String){
@@ -100,6 +103,7 @@ export class TimeScheduleComponent implements OnInit {
             }
             this.lastLine.workedDays=workDayTotal;
             day.value=total;
+            this.canSubmit = this.checkTotal()
         }
     }
 
@@ -111,7 +115,7 @@ export class TimeScheduleComponent implements OnInit {
         }
     }
 
-    checkTimeLinesSubmitted() : boolean {
+    checkTimeLinesSubmitted(): boolean {
         for (const timeLine of this.timeLines){
             if (!timeLine.submitted){
                 return false;
@@ -120,10 +124,20 @@ export class TimeScheduleComponent implements OnInit {
         return true;
     }
 
+    checkTotal(): boolean {
+        const num = this.lastLine.getNumOfWorkedDays();
+        if (this.lastLine.workedDays !== num){
+            return false;
+        }
+        return true;
+    }
+
     onSearch([month, year]){
         this.month = month;
         this.year = year;
         this.getTimeLines(month, year);
+        this.firstLine = new Line('Contrats', 'Nom client', 'Nom projet', 0, true, parseInt(month), parseInt(year));
+        this.lastLine = new Line('Total', 'Total', 'Total', 0, false, parseInt(month), parseInt(year));
 
     }
 }

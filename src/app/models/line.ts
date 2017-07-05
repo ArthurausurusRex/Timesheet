@@ -12,14 +12,14 @@ export class Line{
     year: number;
     date = new Date()
 
-    constructor(contract, clientName, projectName, workedDays, first){ 
+    constructor(contract, clientName, projectName, workedDays, first, month, year){ 
         this.clientName = clientName;
         this.contract = contract;
         this.projectName = projectName;
         this.workedDays = workedDays;
-        this.month = this.date.getMonth();            
-        this.year = this.date.getFullYear();
-        this.numberOfDays = new Date(this.year, this.month+1, 0).getDate();
+        this.month = month;
+        this.year = year;
+        this.numberOfDays = new Date(year, month+1, 0).getDate();
         this.setDays(this.numberOfDays, first);
     }
 
@@ -56,5 +56,14 @@ export class Line{
         for ( let day of this.days){
             this.workedDays=this.workedDays+day.value;
         }
+    }
+    public getNumOfWorkedDays(): number {
+        let num = 0;
+        for (const day of this.days){
+            if (day.isWorkDay){
+                num++
+            }
+        }
+        return num;
     }
 }

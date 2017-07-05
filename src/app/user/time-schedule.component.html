@@ -53,10 +53,11 @@
             <new-line-form></new-line-form>
         </div>
         <div class = "col-sm-1 offset-sm-11">
-            <button *ngIf="!timeLinesSubmitted" class="btn btn-success" (click)="submitTimeLines()">
-                Envoyer
+            <button *ngIf="!canSubmit" class="btn btn-outline-secondary" disabled>Remplir tous les jours</button>
+            <button *ngIf="!timeLinesSubmitted && canSubmit" class="btn btn-success" (click)="submitTimeLines()">
+                Soumettre
             </button>
-            <button *ngIf="timeLinesSubmitted" class="btn btn-outline-secondary" disabled>Envoyé</button>
+            <button *ngIf="timeLinesSubmitted && canSubmit" class="btn btn-outline-secondary" disabled>Envoyé</button>
 
         </div>
     </div>
