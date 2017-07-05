@@ -9,7 +9,7 @@ import { AuthenticationService} from '../services/authentication.service';
 
 
 @Component({
-	templateUrl:'user.component.html'
+	templateUrl: 'user.component.html'
 })
 
 

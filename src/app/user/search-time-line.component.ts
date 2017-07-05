@@ -1,7 +1,7 @@
 
 import { Component, OnInit } from '@angular/core';
 
-import { TimeLineService } from './../services/time-line.service';
+import { UpdateScheduleService } from './user-service/update-schedule.service';
 import { TimeLine } from './../models/timeline';
 
 @Component({
@@ -10,20 +10,16 @@ import { TimeLine } from './../models/timeline';
 })
 
 export class SearchTimeLineComponent implements OnInit {
-    month : String;
-    year : String;
+    month: string;
+    year: string;
     timeLines: Array<TimeLine>
-    constructor(private timeLineService : TimeLineService) { }
- 
+    constructor(private updateService: UpdateScheduleService) { }
+
     ngOnInit() { }
 
-    search(){
-        this.timeLineService.getTimeLinesByDate(this.month, this.year).subscribe(
-            data =>{
-                this.timeLines= data;
-                console.log(data)
-            }
-        )
+    search() {
+        const month = this.month;
+        const year = this.year;
+        this.updateService.announceLineSearched(month, year);
     }
-    
 }

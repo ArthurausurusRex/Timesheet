@@ -22,14 +22,15 @@ export class TimeScheduleComponent implements OnInit {
 
     lines= new Array<Line>();
     timeLines= Array<TimeLine>();
-    firstLine = new Line('Contrats', 'Nom client', 'Nom projet', 0,true);
-    lastLine = new Line('Total', 'Total','Total',0,false);
+    firstLine = new Line('Contrats', 'Nom client', 'Nom projet', 0, true);
+    lastLine = new Line('Total', 'Total', 'Total', 0, false);
     timeLineSelected : TimeLine;
     daySelected : Day;
     date = new Date();
     month = ''+ this.date.getMonth();
     year= ''+ this.date.getFullYear();
     subscription : Subscription;
+    searchSubscription : Subscription;
     timeLinesSubmitted: boolean;
     
 
@@ -38,6 +39,7 @@ export class TimeScheduleComponent implements OnInit {
         private updateLineService: UpdateScheduleService,
         private timeLineService: TimeLineService){
         this.subscription = updateLineService.lineUpdated$.subscribe(Response => this.ngOnInit());
+        this.searchSubscription =updateLineService.lineSearched$.subscribe(Response => this.onSearch(Response))
         console.log(new Date(2017,6,2))
     }
 
@@ -116,5 +118,12 @@ export class TimeScheduleComponent implements OnInit {
             }
         }
         return true;
+    }
+
+    onSearch([month, year]){
+        this.month = month;
+        this.year = year;
+        this.getTimeLines(month, year);
+
     }
 }
